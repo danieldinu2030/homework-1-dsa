@@ -47,54 +47,57 @@ At startup, the browser contains a **default tab** (`ID: 0`) that loads the **de
 
 ## Tasks
 
-The implemented program can handle several tasks to manage the browsing history of each tab. Below are the possible operations with their aim, restrictions and exceptional cases:
+The implemented program can handle several tasks to manage the browsing history of each tab.
+Below are the possible operations with their aim, restrictions and exceptional cases:
 
 ### NEW_TAB
-- Creates a new tab and adds it to the tabs list.
-- The new tab is initialized with the default page and set as the **current tab**.
-- The new tab is appended at the end of the tabs list and assigned an ID by incrementing the last tab's ID (Note: this refers to the ID of the last **inserted** tab in the list, not the last tab still active).
+- Creates a new tab and adds it to the tabs list
+- The new tab is initialized with the default page and set as the **current tab**
+- The new tab is appended at the end of the tabs list and assigned an ID by incrementing the last tab's ID
+
+> **Note:** last tab's ID refers to the ID of the last **inserted** tab in the list, not the last tab still active.
 
 ### CLOSE
-- Closes the current tab by removing it from the tabs list.
-- After closing, the tab to the **left** of the closed tab becomes the current tab.
-- The tab with ID `0` (the initial tab) **cannot** be closed. Attempting to do so should display an error message.
+- Closes the current tab by removing it from the tabs list
+- After closing, the tab to the **left** of the closed tab becomes the current tab
+- The tab with ID `0` (the initial tab) **cannot** be closed. Attempting to do so should display an error message
 
 ### OPEN <ID>
-- Switches the current tab to the tab with the specified `<ID>`.
-- If no tab with the given ID exists, display an error message.
+- Switches the current tab to the tab with the specified `<ID>`
+- If no tab with the given ID exists, display an error message
 
 ### NEXT
-- Switches the current tab to the next tab in the tabs list.
-- The newly opened tab becomes the current tab.
+- Switches the current tab to the next tab in the tabs list
+- The newly opened tab becomes the current tab
 
 ### PREV
-- Switches the current tab to the previous tab in the tabs list.
-- The newly opened tab becomes the current tab.
+- Switches the current tab to the previous tab in the tabs list
+- The newly opened tab becomes the current tab
 
 ### PAGE <ID>
-- Opens the page with the specified `<ID>` in the current tab.
-- If the page does not exist, display an error message.
-- The current page before opening the new page is pushed onto the **backward** stack.
-- The **forward** stack is cleared.
+- Opens the page with the specified `<ID>` in the current tab
+- If the page does not exist, display an error message
+- The current page before opening the new page is pushed onto the **backward** stack
+- The **forward** stack is cleared
 
 ### BACKWARD
-- Navigates to the last page in the **backward** stack of the current tab.
-- If the stack is empty, display an error message.
-- The current page before navigating backward is pushed onto the **forward** stack.
+- Navigates to the last page in the **backward** stack of the current tab
+- If the stack is empty, display an error message
+- The current page before navigating backward is pushed onto the **forward** stack
 
 ### FORWARD
-- Navigates to the last page in the **forward** stack of the current tab.
-- If the stack is empty, display an error message.
-- The current page before navigating forward is pushed onto the **backward** stack.
+- Navigates to the last page in the **forward** stack of the current tab
+- If the stack is empty, display an error message
+- The current page before navigating forward is pushed onto the **backward** stack
 
 ### PRINT
-- Prints all open tab IDs in a single line, separated by spaces.
-- The listing starts from the current tab and continues circularly to the right.
-- Prints on a new line the description of the current page in the current tab.
+- Prints all open tab IDs in a single line, separated by spaces
+- The listing starts from the current tab and continues circularly to the right
+- Prints on a new line the description of the current page in the current tab
 
 ### PRINT_HISTORY <ID>
-- Prints the URLs of the pages visited in the tab with the specified `<ID>`, each on a new line.
-- If the tab does not exist, display the error message.
+- Prints the URLs of the pages visited in the tab with the specified `<ID>`, each on a new line
+- If the tab does not exist, display the error message
 - The order of URLs printed is:
   1. Pages in the **forward** stack (from the oldest to the newest)
   2. The current page
@@ -102,6 +105,40 @@ The implemented program can handle several tasks to manage the browsing history 
 
 ### Error Handling
 
-The error message `"403 Forbidden"` must be displayed for the exceptional cases in operations:  
-`CLOSE`, `OPEN <ID>`, `PAGE <ID>`, `BACKWARD`, and `FORWARD`, when invalid operations are attempted.
+- The error message `"403 Forbidden"` must be displayed for the exceptional cases in operations
+`CLOSE`, `OPEN <ID>`, `PAGE <ID>`, `BACKWARD`, and `FORWARD`, when invalid operations are attempted
+- In case an invalid operation name is provided, a different error message will be printed, highlighting the wrong command
 
+## Input & Output
+
+The program uses two files for input and output, both of which need to have a specific name.
+
+### Input File: `tema1.in`
+
+The program reads data from the file `tema1.in`, structured as follows:
+
+1. **First line:**  
+   An integer `P` representing the number of web pages available for testing (excluding the default page).
+
+2. **Next 3 × P lines:**  
+   For each page:
+   - Line 1: Page `ID` (integer, must be different from `0`)
+   - Line 2: Page `URL` (max 50 characters)
+   - Line 3: Page `description` (string ending with a newline)
+
+> **Note:** The default page (ID `0`) is **not** included in the input file and must be initialized manually in the program.
+
+3. **Next line:**  
+   An integer `N` representing the number of operations to be executed.
+
+4. **Following N lines:**  
+   Each line contains one operation command as described in the previous section.
+
+### Output File: `tema1.out`
+
+The results of the commands (e.g., from `PRINT`, `PRINT_HISTORY`, or error messages) will be written to `tema1.out` in the order in which the commands are processed.
+
+## Final Notes & Observations
+
+- A simple Makefile is provided, containing the `build`, `run` and `clean` rules
+- The program has been run for many edge cases and complex tests, as well as been analysed using Valgrind
