@@ -44,3 +44,64 @@ The browser is the main structure and includes:
   - navigating backward and forward in history
 
 At startup, the browser contains a **default tab** (`ID: 0`) that loads the **default page**.
+
+## Tasks
+
+The implemented program can handle several tasks to manage the browsing history of each tab. Below are the possible operations with their aim, restrictions and exceptional cases:
+
+### NEW_TAB
+- Creates a new tab and adds it to the tabs list.
+- The new tab is initialized with the default page and set as the **current tab**.
+- The new tab is appended at the end of the tabs list and assigned an ID by incrementing the last tab's ID (Note: this refers to the ID of the last **inserted** tab in the list, not the last tab still active).
+
+### CLOSE
+- Closes the current tab by removing it from the tabs list.
+- After closing, the tab to the **left** of the closed tab becomes the current tab.
+- The tab with ID `0` (the initial tab) **cannot** be closed. Attempting to do so should display an error message.
+
+### OPEN <ID>
+- Switches the current tab to the tab with the specified `<ID>`.
+- If no tab with the given ID exists, display an error message.
+
+### NEXT
+- Switches the current tab to the next tab in the tabs list.
+- The newly opened tab becomes the current tab.
+
+### PREV
+- Switches the current tab to the previous tab in the tabs list.
+- The newly opened tab becomes the current tab.
+
+### PAGE <ID>
+- Opens the page with the specified `<ID>` in the current tab.
+- If the page does not exist, display an error message.
+- The current page before opening the new page is pushed onto the **backward** stack.
+- The **forward** stack is cleared.
+
+### BACKWARD
+- Navigates to the last page in the **backward** stack of the current tab.
+- If the stack is empty, display an error message.
+- The current page before navigating backward is pushed onto the **forward** stack.
+
+### FORWARD
+- Navigates to the last page in the **forward** stack of the current tab.
+- If the stack is empty, display an error message.
+- The current page before navigating forward is pushed onto the **backward** stack.
+
+### PRINT
+- Prints all open tab IDs in a single line, separated by spaces.
+- The listing starts from the current tab and continues circularly to the right.
+- Prints on a new line the description of the current page in the current tab.
+
+### PRINT_HISTORY <ID>
+- Prints the URLs of the pages visited in the tab with the specified `<ID>`, each on a new line.
+- If the tab does not exist, display the error message.
+- The order of URLs printed is:
+  1. Pages in the **forward** stack (from the oldest to the newest)
+  2. The current page
+  3. Pages in the **backward** stack (from the newest to the oldest)
+
+### Error Handling
+
+The error message `"403 Forbidden"` must be displayed for the exceptional cases in operations:  
+`CLOSE`, `OPEN <ID>`, `PAGE <ID>`, `BACKWARD`, and `FORWARD`, when invalid operations are attempted.
+
