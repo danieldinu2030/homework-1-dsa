@@ -31,7 +31,8 @@ A tab is defined by a structure that contains:
   - `BACKWARD` — holds pages visited before the current page
   - `FORWARD` — holds pages visited after going back
 
-All tabs are managed using a **circular doubly linked list with a sentinel node**. A pointer to the **currently active tab** is maintained to ensure easier interaction for basic operations in the browser.
+All tabs are managed using a **circular doubly linked list with a sentinel node**.
+A pointer to the **currently active tab** is maintained to ensure easier interaction for basic operations in the browser.
 
 ### Web Browser
 
@@ -53,7 +54,7 @@ Below are the possible operations with their aim, restrictions and exceptional c
 
 ### NEW_TAB
 - Creates a new tab and adds it to the tabs list
-- The new tab is initialized with the default page and set as the **current tab**
+- The new tab is initialised with the default page and set as the **current tab**
 - The new tab is appended at the end of the tabs list and assigned an ID by incrementing the last tab's ID
 
 > **Note:** last tab's ID refers to the ID of the last **inserted** tab in the list, not the last tab still active.
@@ -127,7 +128,7 @@ The program reads data from the file `tema1.in`, structured as follows:
    - Line 2: Page `URL` (max 50 characters)
    - Line 3: Page `description` (string ending with a newline)
 
-> **Note:** The default page (ID `0`) is **not** included in the input file and must be initialized manually in the program.
+> **Note:** The default page (ID `0`) is **not** included in the input file and is initialised in the program.
 
 3. **Next line:**  
    An integer `N` representing the number of operations to be executed.
