@@ -1,4 +1,5 @@
-# Project: Web Browser Simulation with Tabs and History
+# Data Structures and Algorithms 
+# C Web Browser with Tabs and History
 
 ## Overview
 
