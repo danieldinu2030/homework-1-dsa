@@ -140,7 +140,15 @@ The program reads data from the file `tema1.in`, structured as follows:
 
 The results of the commands (e.g., from `PRINT`, `PRINT_HISTORY`, or error messages) will be written to `tema1.out` in the order in which the commands are processed.
 
-## Final Notes & Observations
+## Running the program
 
 - A simple Makefile is provided, containing the `build`, `run` and `clean` rules
-- The program has been run for many edge cases and complex tests, as well as been analysed using Valgrind
+- Ensure that the working directory has two files names `tema1.in` and `tema1.out`
+- The file `tema1.in` should contain the aforementioned information
+- From the terminal, use the command `make && make run`
+- Inspect the output in `tema1.out`
+
+## Final Notes & Observations
+
+- The program has been run for many edge cases and complex tests of as many as 1000 operations
+- For memory safety, the program has been analysed using Valgrind, fixing all occuring errors
