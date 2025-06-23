@@ -1,6 +1,14 @@
 # Data Structures and Algorithms 
 # C Web Browser with Tabs and History
 
+## Table of Contents
+- [Overview](#overview)
+- [Components](#components)
+- [Tasks](#tasks)
+- [Input and Output](#input-and-output)
+- [Running the Program](#running-the-program)
+- [Final Notes](#final-notes)
+
 ## Overview
 
 This project simulates the architecture of a simplified **web browser**, inspired by the behaviour of modern browsers. The goal is to build a C application that:
@@ -111,7 +119,7 @@ Below are the possible operations with their aim, restrictions and exceptional c
 `CLOSE`, `OPEN <ID>`, `PAGE <ID>`, `BACKWARD`, and `FORWARD`, when invalid operations are attempted
 - In case an invalid operation name is provided, a different error message will be printed, highlighting the wrong command
 
-## Input & Output
+## Input and Output
 
 The program uses two files for input and output, both of which need to have a specific name.
 
@@ -140,15 +148,15 @@ The program reads data from the file `tema1.in`, structured as follows:
 
 The results of the commands (e.g., from `PRINT`, `PRINT_HISTORY`, or error messages) will be written to `tema1.out` in the order in which the commands are processed.
 
-## Running the program
+## Running the Program
 
 - A simple Makefile is provided, containing the `build`, `run` and `clean` rules
-- Ensure that the working directory has two files names `tema1.in` and `tema1.out`
+- Ensure that the working directory has two files named `tema1.in` and `tema1.out`
 - The file `tema1.in` should contain the aforementioned information
 - From the terminal, use the command `make && make run`
 - Inspect the output in `tema1.out`
 
-## Final Notes & Observations
+## Final Notes
 
 - The program has been run for many edge cases and complex tests of as many as 1000 operations
 - For memory safety, the program has been analysed using Valgrind, fixing all occuring errors
